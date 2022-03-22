@@ -1,35 +1,54 @@
 import React, {useState, useEffect} from 'react'
 import {getCreditScore} from './api'
-
+import AdressForm from './AdressForm';
 
 
 export default function Dashboard() {
-    const [creditScore, setCreditScore] = useState({})
+    const [creditScore, setCreditScore] = useState({});
+    const [adress, setAdress] = useState('');
 
     function fetchCreditScore(){
-        getCreditScore('0x8A03E0daB7E83076Af7200B09780Af7856F0298D').then(res => {
+        getCreditScore(adress).then(res => {
             setCreditScore(res)
         })
+        .catch(err => {
+            setCreditScore({})
+        })
     }
-    console.log(creditScore);
+    function onInputChange(e){
+        console.log(e.target.value);
+        setAdress(e.target.value);
+    }
+    function onSubmit(){
+        fetchCreditScore(adress);
+    }
     
     function renderTokenHoldings(){
         return creditScore.details.tokenHoldingDetails.details.map((token,index) =>{
             return (
-                <tr>
+                <tr key={token.token}>
                     <td>{token.token}</td>
                 </tr>
             )
         })}
     
+    /*useEffect( () => {fetchCreditScore()}, []);*/
     
-    useEffect( () => {fetchCreditScore()}, []);
-
     return (
        <div>
-           <p>Score: {creditScore.score}</p>
-           <p>Token Holdings score: </p>
+           {<AdressForm onInputChange={onInputChange} onButtonSubmit={onSubmit}/>}
            
+           {creditScore.score ?
+           <div>
+               <h1>Your Score: {creditScore.score}</h1>
+               <h1>Your Holdings: </h1>
+               {renderTokenHoldings()}
+            </div>
+           
+           
+           : null}
+           
+
         </div>
     )
 };
