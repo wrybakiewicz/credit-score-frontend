@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/credit-score/static/css/main.31d6cfe0.css",
-    "main.js": "/credit-score/static/js/main.4687874d.js",
-    "static/js/787.157157b9.chunk.js": "/credit-score/static/js/787.157157b9.chunk.js",
-    "index.html": "/credit-score/index.html",
-    "main.4687874d.js.map": "/credit-score/static/js/main.4687874d.js.map",
-    "787.157157b9.chunk.js.map": "/credit-score/static/js/787.157157b9.chunk.js.map"
+    "main.css": "/credit-score-frontend/static/css/main.31d6cfe0.css",
+    "main.js": "/credit-score-frontend/static/js/main.c047598b.js",
+    "static/js/787.157157b9.chunk.js": "/credit-score-frontend/static/js/787.157157b9.chunk.js",
+    "index.html": "/credit-score-frontend/index.html",
+    "main.c047598b.js.map": "/credit-score-frontend/static/js/main.c047598b.js.map",
+    "787.157157b9.chunk.js.map": "/credit-score-frontend/static/js/787.157157b9.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.31d6cfe0.css",
-    "static/js/main.4687874d.js"
+    "static/js/main.c047598b.js"
   ]
 }
