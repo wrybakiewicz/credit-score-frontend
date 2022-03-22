@@ -29,7 +29,7 @@ export default function Dashboard() {
        <div>
            <p>Score: {creditScore.score}</p>
            <p>Token Holdings score: </p>
-           {renderTokenHoldings()}
+           
         </div>
     )
 };
