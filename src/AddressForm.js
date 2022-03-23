@@ -1,24 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 
-export default function AddressForm({onButtonSubmit, connectedAddress}) {
-
-    const [address, setAddress] = useState('');
-
-    useEffect(() => {
-        if (connectedAddress) {
-            setAddress(connectedAddress);
-        }
-    });
-
-    function onInputChange(e) {
-        console.log(e.target.value);
-        setAddress(e.target.value);
-    }
+export default function AddressForm({onButtonSubmit, onInputChange, address}) {
 
     return (
         <div>
             <div>
-                <input type='text' onChange={onInputChange} value={address}/>
+                <input type='text' onChange={onInputChange} value={address} placeholder={"Your address or ENS"}/>
                 <button onClick={() => onButtonSubmit(address)}>Get Score</button>
             </div>
         </div>

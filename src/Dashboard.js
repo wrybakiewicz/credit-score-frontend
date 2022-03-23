@@ -1,10 +1,17 @@
 import React, {useState} from 'react'
 import {getCreditScore} from './api'
 import AddressForm from './AddressForm';
+import Account from "./Account";
 
 
-export default function Dashboard({connectedAddress}) {
+export default function Dashboard() {
     const [creditScore, setCreditScore] = useState({});
+    const [address, setAddress] = useState('');
+
+    const calculateScoreCallback = (connectedAddress) => {
+        setAddress(connectedAddress);
+        fetchCreditScore(connectedAddress);
+    };
 
     function fetchCreditScore(address) {
         getCreditScore(address).then(res => {
@@ -17,6 +24,10 @@ export default function Dashboard({connectedAddress}) {
 
     function onSubmit(address) {
         fetchCreditScore(address);
+    }
+
+    function onInputChange(e) {
+        setAddress(e.target.value);
     }
 
     function renderTokenHoldings() {
@@ -33,9 +44,10 @@ export default function Dashboard({connectedAddress}) {
 
     return (
         <div>
-            {<AddressForm onButtonSubmit={onSubmit} connectedAddress={connectedAddress}/>}
+            {<Account calculateScoreCallback={calculateScoreCallback}/>}
+            {<AddressForm onButtonSubmit={onSubmit} onInputChange={onInputChange} address={address}/>}
 
-            {creditScore.score ?
+            {creditScore.score !== undefined ?
                 <div>
                     <h1>Your Score: {creditScore.score}</h1>
                     <h1>Your Holdings: </h1>
