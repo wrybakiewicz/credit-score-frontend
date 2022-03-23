@@ -1,16 +1,18 @@
 import Dashboard from "./Dashboard";
-import React, {Component} from 'react';
+import React, {useState} from 'react';
+import Account from "./Account";
 
+export default function App() {
+    const [address, setAddress] = useState('');
 
-class App extends Component {
-  render() {
+    const setAddressCallback = (connectedAddress) => {
+        setAddress(connectedAddress);
+    };
+
     return (
-      <div>
-        <Dashboard/>
-      </div>
+        <div>
+            <Account setAddressCallback={setAddressCallback}/>
+            <Dashboard connectedAddress={address}/>
+        </div>
     )
-  }
-};
-  
-
-export default App;
+}
