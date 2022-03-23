@@ -3,7 +3,7 @@ import axios from 'axios'
 
 
 const api = axios.create({
-    baseURL: 'http://nodebackend-env.eba-i9jv2v5c.eu-central-1.elasticbeanstalk.com'})
+    baseURL: 'https://api.cryptoscore.me'})
 
 
 

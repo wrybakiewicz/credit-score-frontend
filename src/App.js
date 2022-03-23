@@ -1,16 +1,10 @@
 import Dashboard from "./Dashboard";
-import React, {Component} from 'react';
+import React from 'react';
 
-
-class App extends Component {
-  render() {
+export default function App() {
     return (
-      <div>
-        <Dashboard/>
-      </div>
+        <div>
+            <Dashboard/>
+        </div>
     )
-  }
-};
-  
-
-export default App;
+}
