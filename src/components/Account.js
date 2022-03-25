@@ -1,4 +1,8 @@
+import "./account.css";
+
 export default function Account({calculateScoreCallback}) {
+
+    const isMetaMaskInstalled = () => Boolean(window.ethereum);
 
     const connectWallet = async () => {
         const addresses = await window.ethereum.request({method: 'eth_requestAccounts'});
@@ -7,5 +11,12 @@ export default function Account({calculateScoreCallback}) {
         calculateScoreCallback(selectedAddress);
     }
 
-    return <button onClick={connectWallet}>Calculate for my address</button>;
+    return isMetaMaskInstalled() ?
+        <div className={"center"}>
+            <button
+                onClick={connectWallet}
+                className={"calculate-button"}>
+                Calculate credit score for my address
+            </button>
+        </div> : <div></div>;
 }

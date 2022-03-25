@@ -1,14 +1,17 @@
 import React from 'react';
+import "./addressForm.css"
 
 export default function AddressForm({onButtonSubmit, onInputChange, onBlur, address, showInvalidAddressError}) {
 
     return (
-        <div>
+        <div className={"center"}>
             <div>
-                <input type='text' onChange={onInputChange} value={address} onBlur={onBlur} placeholder={"Your address or ENS"}/>
-                <button onClick={() => onButtonSubmit(address)}>Get Score</button>
-                {showInvalidAddressError ? <div>Invalid address</div> : <div/>}
+                <input id="walletAddress" className={"address"} type='text' onChange={onInputChange} value={address} onBlur={onBlur}
+                       placeholder={"Your address or ENS"}/>
             </div>
+            <button className={"calculate-score-button"} onClick={() => onButtonSubmit(address)}>Calculate score
+            </button>
+            {showInvalidAddressError ? <div>Invalid address</div> : <div/>}
         </div>
     )
 }
