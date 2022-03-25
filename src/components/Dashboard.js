@@ -1,44 +1,69 @@
-import React, { useState } from 'react'
-import { getCreditScore } from '../api'
+import React, {useState} from 'react'
+import {getCreditScore} from '../api'
 import AddressForm from './AddressForm';
 import Account from "./Account";
 import ScoreTable from './ScoreTable';
+import {ethers} from "ethers";
+
+const provider = new ethers.providers.JsonRpcProvider(process.env.REACT_APP_JSON_PROVIDER_URL);
 
 export default function Dashboard() {
     const [creditScore, setCreditScore] = useState({});
-    const [showHoldings, setShowHoldings] = useState(true);
-    const [address, setAddress] = useState('0x45f8ab9a1e240dab241f220c97ebb83c7886969e');
+    const [address, setAddress] = useState('');
+    const [showInvalidAddressError, setShowInvalidAddressError] = useState(false);
+    const [showCalculating, setShowCalculating] = useState(false);
 
     const calculateScoreCallback = (connectedAddress) => {
         setAddress(connectedAddress);
+        setShowInvalidAddressError(false);
         fetchCreditScore(connectedAddress);
     };
 
-    function fetchCreditScore(address) {
-        getCreditScore(address).then(res => {
-            setCreditScore(res)
-        })
+    function fetchCreditScore(addressToCalculateScore) {
+        setShowCalculating(true);
+        verifyAddress(addressToCalculateScore)
+            .then(resolvedAddress => getCreditScore(resolvedAddress))
+            .then(res => {
+                setCreditScore(res)
+                setShowCalculating(false);
+            })
             .catch(err => {
                 setCreditScore({})
+                setShowCalculating(false);
             })
     }
 
-    function onSubmit(address) {
+    function onSubmit() {
         fetchCreditScore(address)
         console.log(creditScore);
     }
 
     function onInputChange(e) {
+        setShowInvalidAddressError(false);
         setAddress(e.target.value);
+    }
+
+    function verifyAddress(addressToVerify) {
+        return provider.resolveName(addressToVerify).then(address => {
+            if(address === null) {
+                setShowInvalidAddressError(true);
+                throw Error("Invalid address/ENS");
+            }
+            console.log(address);
+            return address;
+        });
     }
 
 
     return (
         <div>
-            {<Account calculateScoreCallback={calculateScoreCallback} />}
-            {<AddressForm onButtonSubmit={onSubmit} onInputChange={onInputChange} address={address} />}
-            {creditScore.score !== undefined ?
+            {<Account calculateScoreCallback={calculateScoreCallback}/>}
+            {<AddressForm onButtonSubmit={onSubmit} onInputChange={onInputChange} onBlur={() => verifyAddress(address)} address={address} showInvalidAddressError={showInvalidAddressError}/>}
+            {!showCalculating && creditScore.score !== undefined ?
                 <ScoreTable creditScore={creditScore}/>
+                : null}
+            {showCalculating  ?
+                <div>Calculating credit score</div>
                 : null}
         </div>
     )
