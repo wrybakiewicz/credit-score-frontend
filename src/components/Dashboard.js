@@ -45,14 +45,18 @@ export default function Dashboard() {
     }
 
     function verifyAddress(addressToVerify) {
-        return provider.resolveName(addressToVerify).then(address => {
+        return provider.resolveName(addressToVerify)
+            .catch(resolveError => {
+                setShowInvalidAddressError(true);
+                throw resolveError;
+            })
+            .then(address => {
             if(address === null) {
                 if(addressToVerify !== "") {
                     setShowInvalidAddressError(true);
                 }
                 throw Error("Invalid address/ENS");
             }
-            console.log(address);
             return address;
         });
     }
@@ -65,7 +69,7 @@ export default function Dashboard() {
             {!showCalculating && creditScore.score !== undefined ?
                 <ScoreTable creditScore={creditScore}/>
                 : null}
-            {showCalculating  ?
+            {showCalculating && !showInvalidAddressError  ?
                 <Loader />
                 : null}
         </div>
