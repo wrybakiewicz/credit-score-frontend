@@ -4,6 +4,7 @@ import AddressForm from './AddressForm';
 import Account from "./Account";
 import ScoreTable from './ScoreTable';
 import {ethers} from "ethers";
+import Loader from "./Loader";
 
 const provider = new ethers.providers.JsonRpcProvider(process.env.REACT_APP_JSON_PROVIDER_URL);
 
@@ -65,7 +66,7 @@ export default function Dashboard() {
                 <ScoreTable creditScore={creditScore}/>
                 : null}
             {showCalculating  ?
-                <div>Calculating credit score</div>
+                <Loader />
                 : null}
         </div>
     )
