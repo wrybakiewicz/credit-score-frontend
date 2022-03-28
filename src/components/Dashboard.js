@@ -5,9 +5,9 @@ import Account from "./Account";
 import {ethers} from "ethers";
 import Loader from "./Loader";
 import ScoreCard from './ScoreCards';
-import {Avatar, ImageList, ImageListItem, ImageListItemBar} from "@mui/material";
 import PoapsDetails from "./details/PoapsDetails";
 import AddressLifetimeDetails from "./details/AddressLifetimeDetails";
+import SocialScoreDetails from "./details/SocialScoreDetails";
 
 const provider = new ethers.providers.JsonRpcProvider(process.env.REACT_APP_JSON_PROVIDER_URL);
 
@@ -75,19 +75,21 @@ export default function Dashboard() {
                         <h1>Your Score: {creditScore.score.toFixed(2)}</h1>
                     </div>
                     <ScoreCard title={"Address Lifetime"} score={creditScore.details.addressCreation}
-                               details={<AddressLifetimeDetails details={creditScore.details.addressCreation.details}/>}/>
+                               details={<AddressLifetimeDetails
+                                   details={creditScore.details.addressCreation.details}/>}/>
                     <ScoreCard title={"Token Holdings"} score={creditScore.details.tokenHoldingDetails}
                                details={JSON.stringify(creditScore.details.tokenHoldingDetails.details)}/>
                     <ScoreCard title={"Loans"} score={creditScore.details.aaveAddressDetails}
                                details={JSON.stringify(creditScore.details.aaveAddressDetails.details)}/>
-                    <ScoreCard title={"Social"} score={creditScore.details.friendsSocialScore}
-                               details={JSON.stringify(creditScore.details.friendsSocialScore.details)}/>
+                    <ScoreCard title={"Friends social"} score={creditScore.details.friendsSocialScore}
+                               details={<SocialScoreDetails
+                                   details={creditScore.details.friendsSocialScore.details} address={address}/>}/>
                     <ScoreCard title={"Twitter"} score={creditScore.details.twitterDetails}
                                details={JSON.stringify(creditScore.details.twitterDetails.details)}/>
                     <ScoreCard title={"Cyber Connect"} score={creditScore.details.cyberConnectDetails}
                                details={JSON.stringify(creditScore.details.cyberConnectDetails.details)}/>
                     <ScoreCard title={"Poaps"} score={creditScore.details.poapsDetails}
-                               details={<PoapsDetails details={creditScore.details.poapsDetails.details} />}/>
+                               details={<PoapsDetails details={creditScore.details.poapsDetails.details}/>}/>
                 </div>
                 : null}
             {showCalculating && !showInvalidAddressError ?
