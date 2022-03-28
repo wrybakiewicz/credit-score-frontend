@@ -5,6 +5,8 @@ import Account from "./Account";
 import ScoreTable from './ScoreTable';
 import {ethers} from "ethers";
 import Loader from "./Loader";
+import ScoreCard from './ScoreCards';
+import { flexbox } from '@mui/system';
 
 const provider = new ethers.providers.JsonRpcProvider(process.env.REACT_APP_JSON_PROVIDER_URL);
 
@@ -67,7 +69,17 @@ export default function Dashboard() {
             {<Account calculateScoreCallback={calculateScoreCallback}/>}
             {<AddressForm onButtonSubmit={onSubmit} onInputChange={onInputChange} onBlur={() => verifyAddress(address)} address={address} showInvalidAddressError={showInvalidAddressError}/>}
             {!showCalculating && creditScore.score !== undefined ?
-                <ScoreTable creditScore={creditScore}/>
+                <div>
+                    <div style={{ display:'flex', justifyContent:'center' }}>
+                        <h1>Your Score: {creditScore.score.toFixed(2)}</h1>
+                    </div>
+                    <ScoreCard title = {"Token Holdings"} score = {creditScore.details.tokenHoldingDetails} details = {<p>asd</p>}/>
+                    <ScoreCard title = {"Aave"} score = {creditScore.details.aaveAddressDetails} details = {<p>asd</p>}/>
+                    <ScoreCard title = {"Social"} score = {creditScore.details.friendsSocialScore} details = {<p>asd</p>}/>
+                    <ScoreCard title = {"Twitter"} score = {creditScore.details.twitterDetails} details = {<p>asd</p>}/>
+                    <ScoreCard title = {"Cyber Connect"} score = {creditScore.details.cyberConnectDetails} details = {<p>asd</p>}/>
+                    <ScoreCard title = {"Address Lifetime"} score = {creditScore.details.addressCreation} details = {<p>asd</p>}/>
+                    </div>
                 : null}
             {showCalculating && !showInvalidAddressError  ?
                 <Loader />
