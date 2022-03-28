@@ -44,7 +44,7 @@ export default function ScoreCard({title, score, details}) {
 
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                     <CardContent>
-                        {details(score)}
+                        {details}
                     </CardContent>
                 </Collapse>
             </Card>
