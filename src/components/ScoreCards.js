@@ -6,7 +6,7 @@ import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-
+import './ScoreCards.css'
 const ExpandMore = styled((props) => {
     const {expand, ...other} = props;
     return <IconButton {...other} />;
@@ -28,7 +28,7 @@ export default function ScoreCard({title, score, details}) {
 
     return (
         <div style={{display: 'flex', justifyContent: 'center'}}>
-            <Card sx={{width: 1 / 2, margin: 1, boxShadow: 3 }}>
+            <Card className="card" sx={{width: 1 / 2, margin: 1, boxShadow: 3 }}>
                 <CardContent sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'baseline'}}>
                     <Typography>{title + " score: " + score.score.toFixed(2) +" wage: " + score.wage }</Typography>
                     <Typography> Details
