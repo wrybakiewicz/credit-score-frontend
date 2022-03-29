@@ -79,7 +79,7 @@ export default function Dashboard() {
                         details={<AddressLifetimeDetails
                             details={creditScore.details.addressCreation.details} />} />
                     <ScoreCard title={"Token Holdings"} score={creditScore.details.tokenHoldingDetails}
-                        details={<TokenHoldingScoreDetails details={creditScore.details.tokenHoldingDetails.details} />} />
+                        details={<TokenHoldingScoreDetails details={creditScore.details.tokenHoldingDetails.details} address={address} />} />
                     <ScoreCard title={"Loans"} score={creditScore.details.aaveAddressDetails}
                         details={JSON.stringify(creditScore.details.aaveAddressDetails.details)} />
                     <ScoreCard title={"Friends social"} score={creditScore.details.friendsSocialScore}
