@@ -7,6 +7,6 @@ export default function TwitterDetails({ details }) {
             you are following <b>{details.followings}</b> accounts and you tweeted <b>{details.tweet_count}</b> times.
         </div>;
     } else {
-        return <div>Address does not have Twitter</div>
+        return <div>Address does not have Twitter.</div>
     }
 }

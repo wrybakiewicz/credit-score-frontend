@@ -87,7 +87,7 @@ export default function Dashboard() {
                             details={creditScore.details.friendsSocialScore.details} address={address} />} />
                     <ScoreCard title={"Twitter"} score={creditScore.details.twitterDetails}
                         details={<TwitterDetails details={creditScore.details.twitterDetails.details} />} />
-                        <ScoreCard title={"Cyber Connect"} score={creditScore.details.cyberConnectDetails}
+                    <ScoreCard title={"Cyber Connect"} score={creditScore.details.cyberConnectDetails}
                         details={JSON.stringify(creditScore.details.cyberConnectDetails.details)} />
                     <ScoreCard title={"Poaps"} score={creditScore.details.poapsDetails}
                         details={<PoapsDetails details={creditScore.details.poapsDetails.details} />} />
