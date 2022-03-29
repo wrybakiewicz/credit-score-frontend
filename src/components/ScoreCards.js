@@ -23,13 +23,14 @@ export default function ScoreCard({title, score, details}) {
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
-    };
+    }
+   
 
     return (
         <div style={{display: 'flex', justifyContent: 'center'}}>
-            <Card sx={{width: 1 / 2, margin: 1}}>
+            <Card sx={{width: 1 / 2, margin: 1, boxShadow: 3 }}>
                 <CardContent sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'baseline'}}>
-                    <Typography>{title + " score: " + score.score.toFixed(2)}</Typography>
+                    <Typography>{title + " score: " + score.score.toFixed(2) +" wage: " + score.wage }</Typography>
                     <Typography> Details
                         <ExpandMore
                             expand={expanded}
