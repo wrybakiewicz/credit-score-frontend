@@ -20,9 +20,9 @@ export default function TokenHoldingScoreDetails({ details, address }) {
                 <Table sx={{}} size="small" aria-label="a dense table">
                     <TableHead>
                         <TableRow>
-                            <TableCell>Token Name</TableCell>
-                            <TableCell align="right">Amount</TableCell>
-                            <TableCell align="right">Value [$]</TableCell>
+                            <TableCell style={{'font-family': 'Red Hat Mono'}} >Token Name</TableCell>
+                            <TableCell style={{'font-family': 'Red Hat Mono'}} align="right">Amount</TableCell>
+                            <TableCell style={{'font-family': 'Red Hat Mono'}} align="right">Value [$]</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -30,12 +30,13 @@ export default function TokenHoldingScoreDetails({ details, address }) {
                             <TableRow
                                 key={token.token}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+
                             >
-                                <TableCell component="th" scope="row">
+                                <TableCell component="th" scope="row" style={{'font-family': 'Red Hat Mono'}}>
                                     {token.token}
                                 </TableCell>
-                                <TableCell align="right">{(token.averageBalance / 10 ** token.decimals).toFixed(4)}</TableCell>
-                                <TableCell align="right">{(token.averageValue).toFixed(2)}</TableCell>
+                                <TableCell style={{'font-family': 'Red Hat Mono'}} align="right">{(token.averageBalance / 10 ** token.decimals).toFixed(4)}</TableCell>
+                                <TableCell style={{'font-family': 'Red Hat Mono'}} align="right">{(token.averageValue).toFixed(2)}</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>

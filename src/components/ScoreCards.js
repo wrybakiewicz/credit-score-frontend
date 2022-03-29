@@ -6,7 +6,7 @@ import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-
+import "typeface-roboto";
 const ExpandMore = styled((props) => {
     const {expand, ...other} = props;
     return <IconButton {...other} />;
@@ -26,11 +26,11 @@ export default function ScoreCard({title, score, details}) {
     };
 
     return (
-        <div style={{display: 'flex', justifyContent: 'center'}}>
+        <div style={{display: 'flex', justifyContent: 'center', 'font-family': 'Red Hat Mono'}}>
             <Card sx={{width: 1 / 2, margin: 1}}>
                 <CardContent sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'baseline'}}>
-                    <Typography>{title + " score: " + score.score.toFixed(2)}</Typography>
-                    <Typography> Details
+                    <Typography style={{'font-family': 'Red Hat Mono'}}>{title + " score: " + score.score.toFixed(2)}</Typography>
+                    <Typography style={{'font-family': 'Red Hat Mono'}}> Details
                         <ExpandMore
                             expand={expanded}
                             onClick={handleExpandClick}
