@@ -9,6 +9,7 @@ import PoapsDetails from "./details/PoapsDetails";
 import AddressLifetimeDetails from "./details/AddressLifetimeDetails";
 import SocialScoreDetails from "./details/SocialScoreDetails";
 import TokenHoldingScoreDetails from './details/TokenHoldingDetails';
+import TwitterDetails from './details/TwitterDetails';
 const provider = new ethers.providers.JsonRpcProvider(process.env.REACT_APP_JSON_PROVIDER_URL);
 
 export default function Dashboard() {
@@ -85,8 +86,8 @@ export default function Dashboard() {
                         details={<SocialScoreDetails
                             details={creditScore.details.friendsSocialScore.details} address={address} />} />
                     <ScoreCard title={"Twitter"} score={creditScore.details.twitterDetails}
-                        details={JSON.stringify(creditScore.details.twitterDetails.details)} />
-                    <ScoreCard title={"Cyber Connect"} score={creditScore.details.cyberConnectDetails}
+                        details={<TwitterDetails details={creditScore.details.twitterDetails.details} />} />
+                        <ScoreCard title={"Cyber Connect"} score={creditScore.details.cyberConnectDetails}
                         details={JSON.stringify(creditScore.details.cyberConnectDetails.details)} />
                     <ScoreCard title={"Poaps"} score={creditScore.details.poapsDetails}
                         details={<PoapsDetails details={creditScore.details.poapsDetails.details} />} />
