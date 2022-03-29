@@ -6,6 +6,7 @@ import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
 const ExpandMore = styled((props) => {
     const {expand, ...other} = props;
     return <IconButton {...other} />;
@@ -22,13 +23,14 @@ export default function ScoreCard({title, score, details}) {
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
-    };
+    }
+
 
     return (
         <div style={{display: 'flex', justifyContent: 'center', 'font-family': 'Red Hat Mono'}}>
-            <Card sx={{width: 1 / 2, margin: 1}}>
+            <Card sx={{width: 1 / 2, margin: 1, boxShadow: 3 }}>
                 <CardContent sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'baseline'}}>
-                    <Typography style={{'font-family': 'Red Hat Mono'}}>{title + " score: " + score.score.toFixed(2)}</Typography>
+                    <Typography style={{'font-family': 'Red Hat Mono'}}>{title + " score: " + score.score.toFixed(2) +" wage: " + score.wage }</Typography>
                     <Typography style={{'font-family': 'Red Hat Mono'}}> Details
                         <ExpandMore
                             expand={expanded}
@@ -50,3 +52,6 @@ export default function ScoreCard({title, score, details}) {
         </div>
     );
 }
+
+
+
