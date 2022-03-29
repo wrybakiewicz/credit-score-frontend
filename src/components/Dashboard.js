@@ -10,6 +10,7 @@ import AddressLifetimeDetails from "./details/AddressLifetimeDetails";
 import SocialScoreDetails from "./details/SocialScoreDetails";
 import TokenHoldingScoreDetails from './details/TokenHoldingDetails';
 import TwitterDetails from './details/TwitterDetails';
+import LoanDetails from "./details/LoanDetails";
 const provider = new ethers.providers.JsonRpcProvider(process.env.REACT_APP_JSON_PROVIDER_URL);
 
 export default function Dashboard() {
@@ -73,7 +74,7 @@ export default function Dashboard() {
             {!showCalculating && creditScore.score !== undefined ?
                 <div>
                     <div style={{ display: 'flex', justifyContent: 'center', 'font-family': 'Red Hat Mono'}}>
-                        <h1>Your Score: {creditScore.score.toFixed(2)}</h1>
+                        <h1>Your Score: {creditScore.score.toFixed(2)} / 1000</h1>
                     </div>
                     <ScoreCard title={"Address Lifetime"} score={creditScore.details.addressCreation}
                         details={<AddressLifetimeDetails
@@ -81,7 +82,7 @@ export default function Dashboard() {
                     <ScoreCard title={"Token Holdings"} score={creditScore.details.tokenHoldingDetails}
                         details={<TokenHoldingScoreDetails details={creditScore.details.tokenHoldingDetails.details} address={address} />} />
                     <ScoreCard title={"Loans"} score={creditScore.details.aaveAddressDetails}
-                        details={JSON.stringify(creditScore.details.aaveAddressDetails.details)} />
+                        details={<LoanDetails details={creditScore.details.aaveAddressDetails.details}/>} />
                     <ScoreCard title={"Friends social"} score={creditScore.details.friendsSocialScore}
                         details={<SocialScoreDetails
                             details={creditScore.details.friendsSocialScore.details} address={address} />} />
