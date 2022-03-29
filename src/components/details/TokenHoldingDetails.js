@@ -21,8 +21,8 @@ export default function TokenHoldingScoreDetails({ details, address }) {
                     <TableHead>
                         <TableRow>
                             <TableCell>Token Name</TableCell>
-                            <TableCell align="right">Amount</TableCell>
-                            <TableCell align="right">Value [$]</TableCell>
+                            <TableCell align="right">Average Amount [30 days]</TableCell>
+                            <TableCell align="right">Average Value [30 days in $]</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
