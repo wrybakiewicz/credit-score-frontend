@@ -27,11 +27,11 @@ export default function ScoreCard({title, score, details}) {
    
 
     return (
-        <div style={{display: 'flex', justifyContent: 'center'}}>
+        <div style={{display: 'flex', justifyContent: 'center', 'font-family': 'Red Hat Mono'}}>
             <Card className="card" sx={{width: 1 / 2, margin: 1, boxShadow: 3 }}>
                 <CardContent sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'baseline'}}>
-                    <Typography>{title + " score: " + score.score.toFixed(2) +" wage: " + score.wage }</Typography>
-                    <Typography> Details
+                    <Typography style={{'font-family': 'Red Hat Mono'}}>{title + " score: " + score.score.toFixed(2) +" wage: " + score.wage }</Typography>
+                    <Typography style={{'font-family': 'Red Hat Mono'}}> Details
                         <ExpandMore
                             expand={expanded}
                             onClick={handleExpandClick}

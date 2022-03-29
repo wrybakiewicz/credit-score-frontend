@@ -20,9 +20,9 @@ export default function TokenHoldingScoreDetails({ details, address }) {
                 <Table sx={{}} size="small" aria-label="a dense table">
                     <TableHead>
                         <TableRow>
-                            <TableCell>Token Name</TableCell>
-                            <TableCell align="right">Average Amount [30 days]</TableCell>
-                            <TableCell align="right">Average Value [30 days in $]</TableCell>
+                            <TableCell style={{'font-family': 'Red Hat Mono'}}>Token Name</TableCell>
+                            <TableCell style={{'font-family': 'Red Hat Mono'}} align="right">Average Amount [30 days]</TableCell>
+                            <TableCell style={{'font-family': 'Red Hat Mono'}} align="right">Average Value [30 days in $]</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -31,11 +31,11 @@ export default function TokenHoldingScoreDetails({ details, address }) {
                                 key={token.token}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
-                                <TableCell component="th" scope="row">
+                                <TableCell component="th" scope="row" style={{'font-family': 'Red Hat Mono'}}>
                                     {token.token}
                                 </TableCell>
-                                <TableCell align="right">{(token.averageBalance / 10 ** token.decimals).toFixed(4)}</TableCell>
-                                <TableCell align="right">{(token.averageValue).toFixed(2)}</TableCell>
+                                <TableCell style={{'font-family': 'Red Hat Mono'}} align="right">{(token.averageBalance / 10 ** token.decimals).toFixed(4)}</TableCell>
+                                <TableCell style={{'font-family': 'Red Hat Mono'}} align="right">{(token.averageValue).toFixed(2)}</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
