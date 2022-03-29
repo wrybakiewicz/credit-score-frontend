@@ -72,7 +72,7 @@ export default function Dashboard() {
                 address={address} showInvalidAddressError={showInvalidAddressError} />}
             {!showCalculating && creditScore.score !== undefined ?
                 <div>
-                    <div style={{ display: 'flex', justifyContent: 'center' }}>
+                    <div style={{ display: 'flex', justifyContent: 'center', 'font-family': 'Red Hat Mono'}}>
                         <h1>Your Score: {creditScore.score.toFixed(2)}</h1>
                     </div>
                     <ScoreCard title={"Address Lifetime"} score={creditScore.details.addressCreation}
