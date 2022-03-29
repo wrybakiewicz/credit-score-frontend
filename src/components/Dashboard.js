@@ -1,11 +1,15 @@
-import React, {useState} from 'react'
-import {getCreditScore} from '../api'
+import React, { useState } from 'react'
+import { getCreditScore } from '../api'
 import AddressForm from './AddressForm';
 import Account from "./Account";
-import ScoreTable from './ScoreTable';
-import {ethers} from "ethers";
+import { ethers } from "ethers";
 import Loader from "./Loader";
-
+import ScoreCard from './ScoreCards';
+import PoapsDetails from "./details/PoapsDetails";
+import AddressLifetimeDetails from "./details/AddressLifetimeDetails";
+import SocialScoreDetails from "./details/SocialScoreDetails";
+import TokenHoldingScoreDetails from './details/TokenHoldingDetails';
+import TwitterDetails from './details/TwitterDetails';
 const provider = new ethers.providers.JsonRpcProvider(process.env.REACT_APP_JSON_PROVIDER_URL);
 
 export default function Dashboard() {
@@ -51,25 +55,45 @@ export default function Dashboard() {
                 throw resolveError;
             })
             .then(address => {
-            if(address === null) {
-                if(addressToVerify !== "") {
-                    setShowInvalidAddressError(true);
+                if (address === null) {
+                    if (addressToVerify !== "") {
+                        setShowInvalidAddressError(true);
+                    }
+                    throw Error("Invalid address/ENS");
                 }
-                throw Error("Invalid address/ENS");
-            }
-            return address;
-        });
+                return address;
+            });
     }
-
 
     return (
         <div>
-            {<Account calculateScoreCallback={calculateScoreCallback}/>}
-            {<AddressForm onButtonSubmit={onSubmit} onInputChange={onInputChange} onBlur={() => verifyAddress(address)} address={address} showInvalidAddressError={showInvalidAddressError}/>}
+            {<Account calculateScoreCallback={calculateScoreCallback} />}
+            {<AddressForm onButtonSubmit={onSubmit} onInputChange={onInputChange} onBlur={() => verifyAddress(address)}
+                address={address} showInvalidAddressError={showInvalidAddressError} />}
             {!showCalculating && creditScore.score !== undefined ?
-                <ScoreTable creditScore={creditScore}/>
+                <div>
+                    <div style={{ display: 'flex', justifyContent: 'center' }}>
+                        <h1>Your Score: {creditScore.score.toFixed(2)}</h1>
+                    </div>
+                    <ScoreCard title={"Address Lifetime"} score={creditScore.details.addressCreation}
+                        details={<AddressLifetimeDetails
+                            details={creditScore.details.addressCreation.details} />} />
+                    <ScoreCard title={"Token Holdings"} score={creditScore.details.tokenHoldingDetails}
+                        details={<TokenHoldingScoreDetails details={creditScore.details.tokenHoldingDetails.details} />} />
+                    <ScoreCard title={"Loans"} score={creditScore.details.aaveAddressDetails}
+                        details={JSON.stringify(creditScore.details.aaveAddressDetails.details)} />
+                    <ScoreCard title={"Friends social"} score={creditScore.details.friendsSocialScore}
+                        details={<SocialScoreDetails
+                            details={creditScore.details.friendsSocialScore.details} address={address} />} />
+                    <ScoreCard title={"Twitter"} score={creditScore.details.twitterDetails}
+                        details={<TwitterDetails details={creditScore.details.twitterDetails.details} />} />
+                    <ScoreCard title={"Cyber Connect"} score={creditScore.details.cyberConnectDetails}
+                        details={JSON.stringify(creditScore.details.cyberConnectDetails.details)} />
+                    <ScoreCard title={"Poaps"} score={creditScore.details.poapsDetails}
+                        details={<PoapsDetails details={creditScore.details.poapsDetails.details} />} />
+                </div>
                 : null}
-            {showCalculating && !showInvalidAddressError  ?
+            {showCalculating && !showInvalidAddressError ?
                 <Loader />
                 : null}
         </div>
