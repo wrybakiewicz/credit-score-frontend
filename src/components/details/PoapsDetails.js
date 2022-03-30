@@ -12,7 +12,7 @@ export default function PoapsDetails({details}) {
                         loading="lazy"
                     />
                     <ImageListItemBar
-                        title={item.name}
+                        title={item.name.slice(0, 30)}
                         subtitle={<span>{item.dateTime}</span>}
                         position="below"
                         style={{'font-family': 'Red Hat Mono'}}
