@@ -4,10 +4,10 @@ import CardContent from '@mui/material/CardContent';
 import Collapse from '@mui/material/Collapse';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import './ScoreCards.css'
-import {ExpandMore} from "./ExpandMore";
+import '../ScoreCards.css'
+import {ExpandMore} from "../ExpandMore";
 
-export default function ScoreCard({title, score, details}) {
+export default function LoanDetailsCard({title, details}) {
     const [expanded, setExpanded] = React.useState(false);
 
     const handleExpandClick = () => {
@@ -17,10 +17,9 @@ export default function ScoreCard({title, score, details}) {
 
     return (
         <div style={{display: 'flex', justifyContent: 'center', 'font-family': 'Red Hat Mono'}}>
-            <Card className="card" sx={{width: 1 / 2, margin: 1, boxShadow: 3}}>
+            <Card className="card" sx={{width: 0.99, margin: 1, boxShadow: 3}}>
                 <CardContent sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'baseline'}}>
-                    <Typography
-                        style={{'font-family': 'Red Hat Mono'}}>{title + " score: " + score.score.toFixed(2) + " wage: " + score.wage}</Typography>
+                    <Typography style={{'font-family': 'Red Hat Mono'}}>{title}</Typography>
                     <Typography style={{'font-family': 'Red Hat Mono'}}> Details
                         <ExpandMore
                             expand={expanded}

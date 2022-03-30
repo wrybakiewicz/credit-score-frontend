@@ -21,8 +21,6 @@ export default function SocialScoreDetails({details, address}) {
                                 <LinkIcon/>
                             </Link>
                         </ListItem>;
-                        // return <div key={friend}><Link href={`https://app.cyberconnect.me/address/${friend}`}
-                        //                         target={"_blank"}>{friend}</Link></div>
                     })
                 }
             </List> : null

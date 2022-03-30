@@ -15,6 +15,7 @@ export default function PoapsDetails({details}) {
                         title={item.name}
                         subtitle={<span>{item.dateTime}</span>}
                         position="below"
+                        style={{'font-family': 'Red Hat Mono'}}
                     />
                 </ImageListItem>
             ))}

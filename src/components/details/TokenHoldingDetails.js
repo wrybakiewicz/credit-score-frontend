@@ -1,6 +1,4 @@
 import React from "react";
-import { Link, List, ListItem, ListItemText, ListSubheader } from "@mui/material";
-import LinkIcon from '@mui/icons-material/Link';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -8,10 +6,12 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import {Link} from "@mui/material";
 
 export default function TokenHoldingScoreDetails({ details, address }) {
     const message = <div style={{ margin: 5 }}>
-        This is a list of token holdings on your account {address}.
+        This is a list of token holdings on your account <Link href={`https://etherscan.io/address/${address}`}
+                                                               target={"_blank"}>{address}</Link>
     </div>
     return <div>
         {message}
