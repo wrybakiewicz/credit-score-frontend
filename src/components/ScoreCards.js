@@ -20,7 +20,7 @@ export default function ScoreCard({title, score, details}) {
             <Card className="card" sx={{width: 1 / 2, margin: 1, boxShadow: 3}}>
                 <CardContent sx={{display: 'flex', justifyContent: 'space-between', alignItems: 'baseline'}}>
                     <Typography
-                        style={{'font-family': 'Red Hat Mono'}}>{title + " score: " + score.score.toFixed(2) + " wage: " + score.wage}</Typography>
+                        style={{'font-family': 'Red Hat Mono'}}>{title + " score: " + score.score.toFixed(2) + " wage: " + (score.wage)*100 +'%'}</Typography>
                     <Typography style={{'font-family': 'Red Hat Mono'}}> Details
                         <ExpandMore
                             expand={expanded}
